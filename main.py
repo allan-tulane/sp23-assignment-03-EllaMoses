@@ -142,14 +142,14 @@ def parens_match_scan(mylist):
     
     """
     mapped_list = list(map(paren_map, mylist)) #this will result in a list of 1s, -1s, and zeros
-    prefixes, count = scan(plus, 0, mapped_list) #this will result in a list of the counts of number of unmatched parenthesis at each index =
+    prefixes, count = scan(plus, 0, mapped_list) #this will result in a list of the counts of number of unmatched parenthesis at each index 
     min = reduce(min_f, 0, prefixes) #this find the minimum of the list of counts
-    if count != 0: # if the count is not equal to zero, the parenthesis are mismatched
+    if min != 0: # if the min is not equal to zero, the parenthesis are mismatched
         return False
     else: 
-        if min < 0: #if at any point the count is negative, the minimum value will be less than zero. In this case the parenthesis are mistmatched because there is a closing bracket that does not have a correspondin opening bracket
+        if count != 0:
             return False
-        else:  #if the count ends up being zero and the min was never negative, there are no mismatched parenthesis
+        else:
             return True
     
 
@@ -215,3 +215,4 @@ def test_parens_match_dc():
     assert parens_match_dc(['(', ')']) == True
     assert parens_match_dc(['(']) == False
     assert parens_match_dc([')']) == False
+
